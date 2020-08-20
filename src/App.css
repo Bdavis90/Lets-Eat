@@ -1,12 +1,62 @@
-.header,
-h2 {
+.header {
   color: black;
   text-align: center;
+  border: 1px solid black;
+  width: 50%;
+  height: 20rem;
+  margin: 0 auto;
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: blue;
 }
 
 .search-form {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 2rem;
   background: rgb(80, 80, 204);
-  height: 50px;
+  height: 5rem;
+}
+
+.recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.recipe {
+  width: 25rem;
+  text-align: center;
+  border-radius: 8px;
+  margin: 1.1rem;
+  box-shadow: 4px 3px #888787;
+  position: relative;
+}
+
+.recipe-title {
+  text-align: center;
+  width: 95%;
+  color: red;
+}
+
+.view-recipe {
+  position: absolute;
+  left: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  outline: none;
+  color: red;
+  background-color: white;
+}
+
+.recipe-image {
+  width: 100%;
+  height: 62%;
+  border-radius: 8px;
 }

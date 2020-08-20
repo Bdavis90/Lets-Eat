@@ -6,28 +6,33 @@ const Form = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [query, setQuery] = useState("chicken");
   const [results, setResults] = useState([]);
+  const [healthQuery, setHealthQuery] = useState("vegan");
 
-  const API_KEY = "e12ba31ff2c5d863361b3e9c4a042d6c";
-  const API_ID = "40655c38";
-  const API = `https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}&from=0&to=20`;
+  const API = `https://api.edamam.com/search?q=${query}&health=${healthQuery}&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}&from=0&to=100`;
 
   useEffect(() => {
-    Axios.get(API).then(data => {
+    Axios.get(API).then((data) => {
       console.log(data);
       setResults(data.data.hits);
       console.log(results);
     });
   }, [query]);
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const getSearch = e => {
+  const handleHealthQuery = (e) => {
+    setHealthQuery(e.target.value);
+  };
+
+  const getSearch = (e) => {
     e.preventDefault();
     setQuery(searchQuery);
     setSearchQuery("");
   };
+
+  console.log(healthQuery);
 
   return (
     <>
@@ -40,8 +45,11 @@ const Form = () => {
         />
         <button>Search</button>
         <br />
-        <select>
-          <option>hello</option>
+        <select onChange={handleHealthQuery}>
+          <option value="">Select..</option>
+          <option value="vegan">Vegan</option>
+          <option value="kosher">Kosher</option>
+          <option value="dairy-free">Dairy-Free</option>
         </select>
         <select>
           <option>hello</option>
@@ -50,7 +58,9 @@ const Form = () => {
           <option>hello</option>
         </select>
       </form>
-      <Recipe recipes={results} />
+      <div>
+        <Recipe recipes={results} className="recipe-container" />
+      </div>
     </>
   );
 };

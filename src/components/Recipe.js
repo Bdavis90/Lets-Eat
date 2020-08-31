@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 
-const Recipe = ({ recipes }) => {
+const Recipe = ({ match }) => {
+  const [id] = useState(match.params.id);
+  const [item, setItem] = useState([]);
+
+  console.log(match);
+  const API = `https://api.edamam.com/search?q=${id}&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}&from=0&to=100`;
+
+  useEffect(() => {
+    Axios.get(API).then((data) => {
+      console.log(data.data.hits);
+      setItem(data.data.hits[0].recipe);
+    });
+  }, [id]);
+  console.log(item);
   return (
-    <div className="recipe-container">
-      {recipes.map((recipe, idx) => {
-        return (
-          <div key={idx} className="recipe">
-            <img src={recipe.recipe.image} className="recipe-image" />
-            <h2 className="recipe-title">{recipe.recipe.label}</h2>
-            <button className="view-recipe">View Recipe</button>
-          </div>
-        );
-      })}
+    <div className="current-recipe">
+      <img className="current-recipe-image" src={item.image}></img>
     </div>
   );
 };

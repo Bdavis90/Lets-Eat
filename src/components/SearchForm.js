@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Recipe from "./Recipe";
+import Recipes from "./Recipes";
 import Axios from "axios";
 
 const Form = () => {
@@ -59,7 +59,7 @@ const Form = () => {
         </select>
       </form>
       <div>
-        <Recipe recipes={results} className="recipe-container" />
+        <Recipes recipes={results} className="recipe-container" />
       </div>
     </>
   );

@@ -44,19 +44,6 @@ const Form = () => {
           value={searchQuery}
         />
         <button>Search</button>
-        <br />
-        <select onChange={handleHealthQuery}>
-          <option value="">Select..</option>
-          <option value="vegan">Vegan</option>
-          <option value="kosher">Kosher</option>
-          <option value="dairy-free">Dairy-Free</option>
-        </select>
-        <select>
-          <option>hello</option>
-        </select>
-        <select>
-          <option>hello</option>
-        </select>
       </form>
       <div>
         <Recipes recipes={results} className="recipe-container" />

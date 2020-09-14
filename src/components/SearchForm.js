@@ -6,15 +6,12 @@ const Form = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [query, setQuery] = useState("chicken");
   const [results, setResults] = useState([]);
-  const [healthQuery, setHealthQuery] = useState("vegan");
 
-  const API = `https://api.edamam.com/search?q=${query}&health=${healthQuery}&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}&from=0&to=100`;
+  const API = `https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_API_ID}&app_key=${process.env.REACT_APP_API_KEY}&from=0&to=100`;
 
   useEffect(() => {
     Axios.get(API).then((data) => {
-      console.log(data);
       setResults(data.data.hits);
-      console.log(results);
     });
   }, [query]);
 
@@ -22,17 +19,11 @@ const Form = () => {
     setSearchQuery(e.target.value);
   };
 
-  const handleHealthQuery = (e) => {
-    setHealthQuery(e.target.value);
-  };
-
   const getSearch = (e) => {
     e.preventDefault();
     setQuery(searchQuery);
     setSearchQuery("");
   };
-
-  console.log(healthQuery);
 
   return (
     <>
@@ -45,7 +36,7 @@ const Form = () => {
         />
         <button>Search</button>
       </form>
-      <div>
+      <div className="recipe-container">
         <Recipes recipes={results} className="recipe-container" />
       </div>
     </>

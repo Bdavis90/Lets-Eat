@@ -1,13 +1,16 @@
 import React from "react";
 
 const Recipes = ({ recipes }) => {
-  console.log(recipes);
   return (
-    <div className="recipe-container">
+    <div className="recipe-list-container">
       {recipes.map((recipe, idx) => {
         return (
           <div key={idx} className="recipe">
-            <img src={recipe.recipe.image} className="recipe-image" />
+            <img
+              src={recipe.recipe.image}
+              className="recipe-image"
+              alt={recipe.recipe.label}
+            />
             <h2 className="recipe-title">
               {recipe.recipe.label.length < 20
                 ? `${recipe.recipe.label}`

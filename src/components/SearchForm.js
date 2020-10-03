@@ -13,7 +13,7 @@ const Form = () => {
     Axios.get(API).then((data) => {
       setResults(data.data.hits);
     });
-  }, [query]);
+  }, [API]);
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
